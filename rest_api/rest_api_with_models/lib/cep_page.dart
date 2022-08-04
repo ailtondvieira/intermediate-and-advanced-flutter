@@ -15,35 +15,27 @@ class _CepPageState extends State<CepPage> {
   final cepController = TextEditingController();
   final cepFocusNode = FocusNode();
 
-  Map cepData = {};
   CepModel? cepModel;
-
   Future<CepModel?> getInfoByCep() async {
     try {
-      // String cep = cepController.text.replaceAll(RegExp('[^0-9]'), '');
-      var url = 'https://viacep.com.br/ws/85811490/json/';
+      String cep = cepController.text.replaceAll(RegExp('[^0-9]'), '');
 
-      final response = await Dio().get(url);
-      if (response.data['erro'] != "true") {
-        CepModel cepResponse = CepModel.fromMap(response.data);
-        return cepResponse;
-      } else {
-        cepModel = null;
+      if (cep.length >= 8) {
+        var url = 'https://viacep.com.br/ws/$cep/json/';
+
+        final response = await Dio().get(url);
+        if (response.data['erro'] != "true") {
+          return CepModel.fromMap(response.data);
+        }
       }
     } catch (e) {
-      cepModel = null;
+      print('Deu erro $e');
     } finally {
       setState(() {});
     }
 
     return null;
   }
-
-  // Primeiro vejo os dados que virão
-  // Depois faço a view no Flutter
-  // Depois faço a implementação da requisição
-  // Depois testo para ver se tá chegando os dados
-  // Depois conecto na view
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +63,8 @@ class _CepPageState extends State<CepPage> {
               future: getInfoByCep(),
               builder: (context, AsyncSnapshot<CepModel?> snapshot) {
                 if (snapshot.data == null) {
-                  return const Text('');
+                  cepModel = null;
+                  return const Text('Nenhum resultado ainda.');
                 }
 
                 cepModel = snapshot.data;
