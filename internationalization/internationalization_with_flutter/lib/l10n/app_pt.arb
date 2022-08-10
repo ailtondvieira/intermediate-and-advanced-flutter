@@ -1,0 +1,7 @@
+{
+    "helloWorld": "Olá mundo!",
+    "@helloWorld": {
+      "description": "Normalmente será usado no fluxo de autenticação."
+    },
+    "hiMyName" : "Olá, meu nome é"
+}

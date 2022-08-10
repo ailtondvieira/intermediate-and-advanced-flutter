@@ -1,0 +1,29 @@
+name: internationalization_with_flutter
+description: A new Flutter project.
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.5 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_localizations: # Add this line
+    sdk: flutter         # Add this line
+
+  intl: ^0.17.0 # Add this line
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  generate: true # Add this line
+  uses-material-design: true
