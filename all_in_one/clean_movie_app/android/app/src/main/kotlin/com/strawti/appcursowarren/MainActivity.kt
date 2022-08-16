@@ -1,4 +1,4 @@
-package com.example.clean_movie_app
+package com.strawti.appcursowarren
 
 import io.flutter.embedding.android.FlutterActivity
 
